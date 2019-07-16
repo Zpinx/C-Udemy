@@ -1,0 +1,45 @@
+using System;
+
+
+//Excercise 56 part 3
+//Write a program and ask the user to enter 5 numbers. 
+//If a number has been previously entered, display an error message and ask the user to re-try. //
+//Once the user successfully enters 5 unique numbers, sort them and display the result on the consol//e.
+namespace CsharpLearning_2019
+{
+    partial class Program
+    {
+        
+        static void Main(string[] args)
+        {
+
+            start:
+            Console.WriteLine("please enter a number");
+            int[] numInput = new int[5];
+
+            
+            
+                for (int i = 0; i < numInput.Length; i++)
+                {
+               
+                numInput[i] = Convert.ToInt32(Console.ReadLine());
+                    for (int j = 0; j < i; j++)
+                    {
+                    if (numInput[i] == numInput[j])
+                    {
+                        Console.WriteLine("number is not unique. \nPlease try again\n");
+                        goto start;
+                    }
+                    else
+                        break;
+                    }
+                
+                }
+            Array.Sort(numInput);
+            Console.Clear();
+            Console.WriteLine("Sorted list on numbers");
+                        foreach(var num in numInput)
+                Console.WriteLine(num);
+        }
+    }
+}
