@@ -1,0 +1,45 @@
+Random rnd = new Random();
+            int number = rnd.Next(1, 10);
+            var gameWon = false;
+
+            int lives = 4;
+
+        // Game start
+        tryAgain:
+            Console.WriteLine("Guess a number between 1 and 10...");
+            
+            var userInput = Convert.ToInt32(Console.ReadLine());
+
+           
+               
+                    if (userInput == number)
+                    {
+                        Console.WriteLine("Correct!");
+                        gameWon = true;
+                    }
+             
+                    else if (userInput != number)
+                    {
+                        lives--;
+                             Console.Clear();
+                             Console.WriteLine("incorrect, you have  " + lives + " lives left");
+                                if (lives == 0)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("sorry your out of lives...\n\n\n\n\n ...GAME OVER...");
+                                    Console.WriteLine("\n\n\nthe number was......" + number + "......\n\n\n\n");
+                                    goto endGame;
+                                }
+                        goto tryAgain;
+                    }
+
+
+
+
+            if (gameWon == true)
+            {
+                Console.WriteLine("you did great!");
+            }
+            
+            endGame:
+            Console.WriteLine("thank you for playing");
