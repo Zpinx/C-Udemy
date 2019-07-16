@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+
+//4- Write a program and ask the user to continuously enter a number or type "Quit" to exit.
+//The list of numbers may include duplicates. 
+//Display the unique numbers that the user has entered.
+namespace CsharpLearning_2019
+{
+    partial class Program
+    {
+        
+        static void Main(string[] args)
+        {
+            List<int> numbers = new List<int>();
+            restart:
+            Console.WriteLine("please enter a number");
+            var numInput = Console.ReadLine();
+            int value;
+            while (numInput != "")
+            {
+                Console.WriteLine("enter another number");
+                var input = Console.ReadLine();
+                if(int.TryParse(input, out value))
+                {
+                    numbers.Add(value);
+                    
+                }
+                else if (input == "Quit")
+                {
+                    List<int> distinct = numbers.Distinct().ToList();
+                    distinct.Sort();
+                    foreach (var num in distinct)
+                        Console.WriteLine(num);
+                    
+                    goto end;
+                }
+            }
+            if (numInput == "")
+            { Console.WriteLine("ERROR\nno number entered...");
+                goto restart; }
+        end:
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadLine();
+        }
+    }
+}
