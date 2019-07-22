@@ -1,0 +1,52 @@
+using System;
+using System.IO;
+
+namespace Csharp
+{
+    class Program
+    {
+        public static void Main()
+        {
+            string inFileName = null;
+            inFileName = @"D:\C# Learning\CsharpLearning 2019\test.txt";
+
+            StreamReader sr = new StreamReader(inFileName);
+
+            int counter = 0;
+            string delim = " ,."; //maybe some more delimiters like ?! and so on
+            string[] fields = null;
+            string line = null;
+
+            while (!sr.EndOfStream)
+            {
+                line = sr.ReadLine();//each time you read a line you should split it into the words
+                line.Trim();
+                fields = line.Split(delim.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                counter += fields.Length; //and just add how many of them there is
+            }
+
+
+            sr.Close();
+            Console.WriteLine("The word count is: {0}", counter);
+
+            // finding the longest word (for test purpose it sould be "testtesttest")
+
+
+            string[] words = line.Split(new[] { " " }, StringSplitOptions.None);
+            string word = "";
+            int ctr = 0;
+            foreach (string s in words)
+            {
+                if (s.Length > ctr)
+                {
+                    word = s;
+                    ctr = s.Length;
+                }
+            }
+            Console.WriteLine("and the longest word is: {0} ", word); ;
+
+        }
+
+    }
+
+}
